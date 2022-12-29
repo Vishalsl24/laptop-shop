@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    
+    <title>Document</title>
+    
+    <link href="js/styles1.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/images/chat.css">
+    <link rel="stylesheet" href="./js/styles2.css">
+    <link rel="stylesheet" href="./css/images/chatbot.css">
+    <link rel="stylesheet" href="./css/images/typing.css">
+</head>
+
+<style>
+	#banner2{
+		margin-left: 150px;
+		width: 340px;
+	}
+	#banner1{
+		width: 380px;
+	}
+</style>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.jpg}"  src="../static/images/logo.jpg" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" href="#">home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/shop}" href="#">shop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/Contact}" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/myprofile}" href="#">My Profile</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cart}" href="#">cart</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="nav-link" th:text="${cartCount}">(0)</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="banner">
+<img alt="banner1" src="./css/images/banner2.jpg" id="banner2">
+<img alt="banner2" src="./css/images/banner1.jpg" id="banner1">
+<img alt="banner3" src="./css/images/banner3.jpg" id="banner3">
+</div>
+
+<p class="homehead"><b>Store. The best way to buy the products you love.</b></p>
+
+    <section id="hero" class="d-flex align-items-center">
+                <div class="col-6">
+                    <h1>Better digital experience with Present on</h1>
+                    <h2>We are team of talented designers making services with Laptop.</h2>
+                    <a th:href="@{/shop}" href="shop.html" class="btn btn-primary startbtn">Get Started</a>
+                </div>
+                <div class="col-6">
+                    <img alt="img" class="homebg"src="../images/bg3.jpg">
+                </div>
+    </section>
+    
+     <!-- Custom scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <div class="chat">
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatbox__support">
+                <div class="chatbox__header">
+                    <div class="chatbox__image--header">
+                        <img src="./css/images/image.png" alt="image">
+                    </div>
+                    <div class="chatbox__content--header">
+                        <h4 class="chatbox__heading--header">Chat support</h4>
+                        <p class="chatbox__description--header">There are many variations of passages of Lorem Ipsum available</p>
+                    </div>
+                </div>
+                <div class="chatbox__messages">
+                    <div>
+                        <div class="messages__item messages__item--visitor">
+                            Can you let me talk to the support?
+                        </div>
+                        <div class="messages__item messages__item--operator">
+                            Sure!
+                        </div>
+                        <div class="messages__item messages__item--visitor">
+                            Need your help, I need a developer in my site.
+                        </div>
+                        <div class="messages__item messages__item--operator">
+                            Hi... What is it? I'm a front-end developer, yay!
+                        </div>
+                        <div class="messages__item messages__item--typing">
+                            <span class="messages__dot"></span>
+                            <span class="messages__dot"></span>
+                            <span class="messages__dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbox__footer">
+                    <input type="text" placeholder="Write a message...">
+                    <p class="chatbox__send--footer">Send</p>
+                </div>
+            </div>
+            <div class="chatbox__button">
+                <button>button</button>
+            </div>
+        </div>
+    </div>
+    <script src="./css/images/chat.js"></script>
+    <script src="./css/images/app.js"></script>
+
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-col first">
+                        <h6>About Web site</h6>
+                        <p class="p-small">We are team ChatConnect. This project is a part of final year project at Rajiv Gandhi College of Engineering Research and Technology,Chandrapur,Maharashtra. We are a team of 4 students. We have developed this website to help people
+                            to build simplechatbot for their various purposes. This is an open source project and we would love to welcome your contribution.
+                        </p>
+                    </div>
+                    <!-- end of footer-col -->
+                    <div class="footer-col second">
+                        <h6>Links</h6>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li>Important: <a href="terms.html">Terms & Conditions</a></li>
+                            <li>Important: <a href="privacy.html">Privacy Policy</a></li>
+                            <li>Menu: <a href="#header">Home</a>, <a href="#features">Features</a>, <a href="#details">Details</a>, <a href="#pricing">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <!-- end of footer-col -->
+                    <div class="footer-col third">
+                        <span class="fa-stack">
+                                <a href="https://www.facebook.com/Edubridgelearning/">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                </a>
+                            </span>
+                        <span class="fa-stack">
+                                <a href="https://twitter.com/edubridgelearn?lang=en">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                </a>
+                            </span>
+
+                        <span class="fa-stack">
+                                <a href="https://github.com/Vishalakki/Java-Project">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x"></i>
+                                </a>
+                            </span>
+                        <p class="p-small">Mail us at <a href="vishallokhandeakki@gmail.com"><strong>vishallokhandeakki@gmail.com</strong></a></p>
+                    </div>
+                    <!-- end of footer-col -->
+                </div>
+                <!-- end of col -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container -->
+    </div>
+    <!-- end of footer -->
+    <!-- end of footer -->
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © <a href="#your-link">Laptop Shop❤️</a></p>
+                </div>
+                <!-- end of col -->
+            </div>
+            <!-- enf of row -->
+        </div>
+        <!-- end of container -->
+    </div>
+    <!-- end of copyright -->
+    <!-- end of copyright -->
+    
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
